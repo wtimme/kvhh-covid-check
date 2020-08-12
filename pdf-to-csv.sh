@@ -27,6 +27,8 @@ rm -rf $TEMPORARY_PAGE_DIRECTORY
 mkdir -p $CSV_OUTPUT_DIRECTORY
 mkdir -p $TEMPORARY_PAGE_DIRECTORY
 
+echo "Starting to convert $PDF_FILE..."
+
 # Iterate over all pages, from start to end.
 number_of_pages=0
 for ((page=1;page<=$MAXIMUM_NUMBER_OF_PAGES;page++)); do
