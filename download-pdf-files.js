@@ -27,6 +27,7 @@ rp(url)
       downloadFile(absolute_url)
     }
 
+    console.log('Downloaded', link_tags.length, 'files:');
     console.log(pdf_urls)
   })
   .catch(function(err){
