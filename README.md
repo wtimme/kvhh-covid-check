@@ -1,4 +1,4 @@
-# KVH SARS-CoV-2 test results
+# SARS-CoV-2 test results for Hamburg
 
 Web app that allows for an easy retrieval of SARS-CoV-2 test results from the _Arztruf Hamburg_.
 
