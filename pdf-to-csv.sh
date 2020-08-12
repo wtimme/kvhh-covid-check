@@ -6,7 +6,7 @@
 PDF_FILE=$1
 
 # CONFIGURATION
-TABULA_JAR="tabula-1.0.3-jar-with-dependencies.jar"
+TABULA_JAR="tabula.jar"
 CSV_OUTPUT_DIRECTORY="csv"
 TEMPORARY_PAGE_DIRECTORY="pages"
 MAXIMUM_NUMBER_OF_PAGES=25
