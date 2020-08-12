@@ -1,0 +1,33 @@
+doctype html
+
+html(lang="de")
+  head
+    meta(charset='utf-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+
+    title #{title}
+  
+  body
+    div.container
+      div.jumbotron.mt-5
+        h1 Jetzt Corona-Testergebnis abfragen
+
+        form
+          
+          div.form-group
+            label(for="code") Code
+            input.form-control(type="text" id="code" name="code" aria-describedby="codeHelp" placeholder="U80001534" required)
+            small.form-text.text-muted(id="codeHelp") Gib hier den Code ein, den Du vom Arztruf erhalten hast.
+          
+          button.btn.btn-primary.mb-2(type="submit") Prüfen
+        
+        p.lead Dieser Service wird #[i nicht] von der Kassenärztlichen Vereinigung Hamburg bereitgestellt.
+
+        p.text-muted Alle Angaben sind ohne Gewähr. Keine Garantie auf Vollständigkeit.
+
+
+    script(src='/js/jquery.min.js')
+    script(src='/js/popper.min.js')
+    script(src='/js/bootstrap.min.js')
