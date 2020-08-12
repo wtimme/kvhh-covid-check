@@ -65,6 +65,9 @@ for ((page=1;page<=$number_of_pages;page++)); do
   cat $TEMPORARY_PAGE_DIRECTORY/$page.csv >> $OUTPUT_FILE
 done
 
+# Remove the first line, since it is the header of the table.
+tail -n +2 "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+
 # Clean up by removing the single pages.
 echo "Cleaning up..."
 rm -rf $TEMPORARY_PAGE_DIRECTORY
