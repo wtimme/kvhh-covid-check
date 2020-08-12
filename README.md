@@ -25,7 +25,22 @@ Configuring the app for Uberspace is pretty easy:
 5. Add the repository as a remote to your clone of _this_ repository
 6. Configure [the subdomain][3] and [the web backend][4]
 
+### Crontab
+
+In order to automatically update the data, [setup a Cronjob][5]:
+
+```bash
+# Download PDF files
+0 */1 * * * /usr/bin/node /home/juitblip/apps/covid.milchbartstrasse.de/download-pdf-files >> /home/juitblip/apps/covid.milchbartstrasse.de/cronjob-download.log 2>&1
+
+# Five minutes later, convert PDF to CSV
+5 */1 * * * /home/juitblip/apps/covid.milchbartstrasse.de/convert-and-combine-all-pdf-files.sh >> /home/juitblip/apps/covid.milchbartstrasse.de/cronjob-convert.log 2>&1
+```
+
+This downloads the PDF files every hour and generates the CSV file five minutes later.
+
 [1]: https://github.com/tabulapdf/tabula-java/releases/latest
 [2]: https://manual.uberspace.de/daemons-supervisord.html
 [3]: https://manual.uberspace.de/web-domains.html
 [4]: https://manual.uberspace.de/web-backends.html
+[5]: https://manual.uberspace.de/daemons-cron.html
