@@ -7,12 +7,14 @@ PDF_FILE=$1
 
 # CONFIGURATION
 TABULA_JAR="tabula-1.0.3-jar-with-dependencies.jar"
+CSV_OUTPUT_DIRECTORY="csv"
 TEMPORARY_PAGE_DIRECTORY="pages"
 MAXIMUM_NUMBER_OF_PAGES=25
 
 # Calculate the output filename
-filename=$(basename $PDF_FILE)
-OUTPUT_FILE=${filename/pdf/csv}
+filename_with_extension=$(basename $PDF_FILE)
+filename_without_extension=${filename_with_extension//.pdf/}
+OUTPUT_FILE="$CSV_OUTPUT_DIRECTORY/$filename_without_extension.csv"
 
 # Remove the old output files.
 rm -rf $OUTPUT_FILE
@@ -21,7 +23,8 @@ rm -f errors.txt
 # Remove directory in which the single pages were temporarily saved.
 rm -rf $TEMPORARY_PAGE_DIRECTORY
 
-# Make sure the temporary page directory exists.
+# Make sure the output directories exists.
+mkdir -p $CSV_OUTPUT_DIRECTORY
 mkdir -p $TEMPORARY_PAGE_DIRECTORY
 
 # Iterate over all pages, from start to end.
