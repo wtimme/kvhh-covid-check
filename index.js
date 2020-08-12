@@ -19,7 +19,25 @@ app.use('/js', express.static('node_modules/@popperjs/core/dist/umd'))
 app.use('/js', express.static('node_modules/jquery/dist'))
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!' })
+  var rowWithCode;
+  if (req.query.code && req.query.code.length > 0) {
+    const code = req.query.code.trim()
+    rowWithCode = csvRows.find(function(row) {
+      return row['Code'] === code
+    })
+
+    if (!rowWithCode) {
+      res.render('no-result')
+    } else if (rowWithCode['Result'] == 'negativ') {
+      res.render('result-negative', { row: rowWithCode })
+    } else if (rowWithCode['Result'] == 'positiv') {
+      res.render('result-positive', { row: rowWithCode })
+    } else {
+      res.render('result-unknown', { row: rowWithCode })
+    }
+  } else {
+    res.render('index')
+  }
 })
 
 // Current CSV data

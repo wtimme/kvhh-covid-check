@@ -1,0 +1,32 @@
+doctype html
+
+html(lang="de")
+  head
+    meta(charset='utf-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+
+    title Corona-Abfrage
+  
+  body
+    div.container
+      div.jumbotron.mt-5
+        h1 Hier ist das Ergebnis:
+
+        div.card.text-white.bg-danger.mb-3
+          div.card-header Positives Ergebnis
+          div.card-body
+            h5.card-title Bitte bleiben Sie in Quarantäne.
+            p.card-text Bei Ihnen wurde Corona festgestellt.
+        
+        p.lead Dieser Service wird #[i nicht] von der Kassenärztlichen Vereinigung Hamburg bereitgestellt.
+
+        p.text-muted Alle Angaben sind ohne Gewähr. Keine Garantie auf Vollständigkeit.
+      
+      a.btn.btn-link.float-right.pr-0(href="/") Weiteren Code abfragen
+
+
+    script(src='/js/jquery.min.js')
+    script(src='/js/popper.min.js')
+    script(src='/js/bootstrap.min.js')
