@@ -2,6 +2,8 @@
 
 Web app that allows for an easy retrieval of SARS-CoV-2 test results from the _Arztruf Hamburg_.
 
+![Screenshot of the app in Firefox](screenshot.png)
+
 ## Setup
 
 1. Download the [latest release][1] (the `.jar` file) of **tabula-java**
