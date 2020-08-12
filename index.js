@@ -1,8 +1,11 @@
 // DEPENDENCIES
 const express = require("express")
+const csv = require('csv-parser')
+const fs = require('fs')
 
 // CONFIGURATION
 const port = 1025
+const csvFilename = 'all.csv'
 
 // Set up Express
 const app = express()
@@ -19,6 +22,24 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Hey', message: 'Hello there!' })
 })
 
+// Current CSV data
+var csvRows = [];
+
+var reloadCSVData = function() {
+  const parsedRows = []
+
+  fs.createReadStream(csvFilename)
+    .pipe(csv())
+    .on('data', (data) => parsedRows.push(data))
+    .on('end', () => {
+      csvRows = parsedRows
+
+      console.log('CSV data reloaded successfully')
+    });
+};
+
 app.listen(port, () => {
+  reloadCSVData()
+
   console.log(`Covid test result app listening at http://localhost:${port}`)
 })
