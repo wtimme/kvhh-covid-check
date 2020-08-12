@@ -14,4 +14,18 @@ In order to generate the large all-in-one CSV file, follow these steps.
 
 You can now browse _all_ test results from `all.csv`. Get well soon!
 
+## Uberspace
+
+Configuring the app for Uberspace is pretty easy:
+
+1. On your Uberspace, create the directory where the app will be installed to (see the `post-receive` script)
+2. [Register the supervisord service][2], using the `.ini` file that comes with this repository
+3. Setup an empty repository on your Uberspace (`git init --bare`)
+4. Add the `post-receive` hook to that repository
+5. Add the repository as a remote to your clone of _this_ repository
+6. Configure [the subdomain][3] and [the web backend][4]
+
 [1]: https://github.com/tabulapdf/tabula-java/releases/latest
+[2]: https://manual.uberspace.de/daemons-supervisord.html
+[3]: https://manual.uberspace.de/web-domains.html
+[4]: https://manual.uberspace.de/web-backends.html
