@@ -4,12 +4,15 @@
 
 # PARAMETERS
 PDF_FILE=$1
-OUTPUT_FILE=${PDF_FILE/pdf/csv}
 
 # CONFIGURATION
 TABULA_JAR="tabula-1.0.3-jar-with-dependencies.jar"
 TEMPORARY_PAGE_DIRECTORY="pages"
 MAXIMUM_NUMBER_OF_PAGES=25
+
+# Calculate the output filename
+filename=$(basename $PDF_FILE)
+OUTPUT_FILE=${filename/pdf/csv}
 
 # Remove the old output files.
 rm -rf $OUTPUT_FILE
