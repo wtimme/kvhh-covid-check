@@ -10,10 +10,14 @@ html(lang="de")
       h1.mb-3 Suchergebnisse
 
       if !rows.length
-        div.alert.alert-info.clearfix(role="alert")
-          h4.alert-heading Keine Treffer
-          p Die Suche nach #[code #{code}] ergab keine Treffer.
+        p Deine Suche nach #[code #{code}] ergab keine Treffer in unseren Daten.
 
+        div.alert.alert-warning.clearfix(role="alert")
+          h4.alert-heading Bitte beachten!
+
+          p Die auf dieser Seite zur Verfügung gestellten Informationen erheben keinen Anspruch auf Vollständigkeit.
+
+          p Die Original-Daten findest Du auf der Seite der #[a(href="https://www.kvhh.net/kvhh/pages/index/p/1424") KVHH].
       else
 
         p Deine Suche nach #[code #{code}] ergab #{rows.length} Treffer.
