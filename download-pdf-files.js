@@ -9,7 +9,8 @@ const url = base_url + '/kvhh/pages/index/p/1424'
 const pdf_directory = path.resolve(__dirname, 'pdf')
 const last_updated_file = path.resolve(__dirname, 'last-updated.txt')
 
-// Make sure the target directory exists.
+// Make sure the target directory is clean and exists.
+fs.rmdirSync(pdf_directory, { recursive: true });
 fs.mkdirSync(pdf_directory, { recursive: true });
 
 rp(url)
