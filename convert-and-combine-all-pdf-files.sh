@@ -4,12 +4,11 @@
 
 # CONFIGURATION
 PDF_DIRECTORY="./pdf"
-CSV_DIRECTORY="./csv"
+CSV_DIRECTORY="csv"
 OUTPUT_FILE="all.csv"
 
 # CONFIGURATION
 TABULA_JAR="tabula.jar"
-CSV_OUTPUT_DIRECTORY="csv"
 TEMPORARY_PAGE_DIRECTORY="pages"
 MAXIMUM_NUMBER_OF_PAGES=25
 
@@ -21,7 +20,7 @@ function convert_pdf_file_to_csv() {
   # Calculate the output filename
   filename_with_extension=$(basename $PDF_FILE)
   filename_without_extension=${filename_with_extension//.pdf/}
-  csv_filename="$CSV_OUTPUT_DIRECTORY/$filename_without_extension.csv"
+  csv_filename="$CSV_DIRECTORY/$filename_without_extension.csv"
 
   # Remove the old output files.
   rm -rf $csv_filename
@@ -31,7 +30,7 @@ function convert_pdf_file_to_csv() {
   rm -rf $TEMPORARY_PAGE_DIRECTORY
 
   # Make sure the output directories exists.
-  mkdir -p $CSV_OUTPUT_DIRECTORY
+  mkdir -p $CSV_DIRECTORY
   mkdir -p $TEMPORARY_PAGE_DIRECTORY
 
   echo "Starting to convert $PDF_FILE..."
