@@ -1,0 +1,40 @@
+doctype html
+
+html(lang="de")
+  include partials/head.pug
+  
+  body
+    include partials/navigation.pug
+
+    div.container
+      if !rows.length
+        div.alert.alert-info.clearfix(role="alert")
+          h4.alert-heading Keine Treffer
+          p Die Suche nach #[code #{code}] ergab keine Treffer.
+
+          div.text-center
+            a.btn.btn-secondary(href="/") Weiteren Code abfragen
+      else
+        h1.mb-3 Suchergebnisse
+
+        p Deine Suche nach #[code #{code}] ergab #{rows.length} Treffer.
+        
+        table.table
+          thead
+            tr
+              th(scope="col") Auftrags-Nr.
+              th(scope="col") Befund
+              th(scope="col") Auftragsdatum
+          tbody
+            each row in rows
+              tr
+                th(scope="row") #{row.Code}
+                td #{row.Result}
+                td #{row.Date}
+          
+    
+      include partials/footer.pug
+
+    script(src='/js/jquery.min.js')
+    script(src='/js/popper.min.js')
+    script(src='/js/bootstrap.min.js')

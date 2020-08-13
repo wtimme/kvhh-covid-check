@@ -25,25 +25,16 @@ app.get('/', function (req, res) {
     'lastUpdated': lastUpdatedDate
   }
 
-  var rowWithCode;
   if (req.query.code && req.query.code.length > 0) {
     const code = req.query.code.trim()
-    rowWithCode = csvRows.find(function(row) {
-      return row['Code'] === code
+
+    templateVariables.code = code
+
+    templateVariables.rows = csvRows.filter(function(row) {
+      return row['Code'].toLowerCase().includes(code.toLowerCase())
     })
 
-    // Allow the template to access the row's data.
-    templateVariables.row = rowWithCode
-
-    if (!rowWithCode) {
-      res.render('no-result', templateVariables)
-    } else if (rowWithCode['Result'] == 'negativ') {
-      res.render('result-negative', templateVariables)
-    } else if (rowWithCode['Result'] == 'positiv') {
-      res.render('result-positive', templateVariables)
-    } else {
-      res.render('result-unknown', templateVariables)
-    }
+    res.render('search-results', templateVariables)
   } else {
     res.render('index', templateVariables)
   }
