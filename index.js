@@ -21,13 +21,18 @@ app.use(express.static('node_modules/bootstrap/dist'))
 app.use('/js', express.static('node_modules/@popperjs/core/dist/umd'))
 app.use('/js', express.static('node_modules/jquery/dist'))
 
-app.get('/', function (req, res) {
-  var templateVariables = {
+// Determines the common template variables that are provided for each route.
+var getTemplateVariables = function (variables = {}) {
+  const commonVariables = {
     'lastUpdated': lastUpdatedDate,
     lastModified: relativeModifiedDate,
   }
 
-  res.render('index', templateVariables)
+  return Object.assign({},commonVariables, variables)
+}
+
+app.get('/', function (req, res) {
+  res.render('index', getTemplateVariables())
 })
 
 app.get('/suche', function (req, res) {
@@ -42,12 +47,10 @@ app.get('/suche', function (req, res) {
     return row['Code'].toLowerCase().includes(code.toLowerCase())
   })
 
-  res.render('search-results', {
-    'lastUpdated': lastUpdatedDate,
-    lastModified: relativeModifiedDate,
+  res.render('search-results', getTemplateVariables({
     code: code,
     rows: rows,
-  })
+  }))
 })
 
 app.get('/reload', function (req, res) {
@@ -57,12 +60,10 @@ app.get('/reload', function (req, res) {
 });
 
 app.get('/alle-daten', function (req, res) {
-  res.render('all-data', {
+  res.render('all-data', getTemplateVariables({
     rows: csvRows,
-    lastUpdated: lastUpdatedDate,
-    lastModified: relativeModifiedDate,
     activeModule: 'all-data',
-  })
+  }))
 });
 
 // Current CSV data
