@@ -57,9 +57,8 @@ app.get('/suche', function (req, res) {
 })
 
 app.get('/reload', function (req, res) {
-  reloadCSVData(function() {
-    res.send('CSV data reloaded.')
-  })
+  reloadCSVData()
+  res.redirect('/?reloaded')
 });
 
 app.get('/alle-daten', function (req, res) {
