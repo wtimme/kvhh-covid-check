@@ -9,6 +9,7 @@ const moment = require('moment')
 const port = 1025
 const csvFilename = path.resolve(__dirname, 'all.csv')
 const lastUpdatedFile = path.resolve(__dirname, 'last-updated.txt')
+const pageTitle = 'Corona Abstrichtest'
 
 // Set up Express
 const app = express()
@@ -26,6 +27,7 @@ var getTemplateVariables = function (variables = {}) {
   const commonVariables = {
     'lastUpdated': lastUpdatedDate,
     lastModified: relativeModifiedDate,
+    title: variables.title ? pageTitle + ': ' + variables.title : pageTitle,
   }
 
   return Object.assign({}, variables, commonVariables)
@@ -50,6 +52,7 @@ app.get('/suche', function (req, res) {
   res.render('search-results', getTemplateVariables({
     code: code,
     rows: rows,
+    title: 'Suchergebnisse',
   }))
 })
 
@@ -63,6 +66,7 @@ app.get('/alle-daten', function (req, res) {
   res.render('all-data', getTemplateVariables({
     rows: csvRows,
     activeModule: 'all-data',
+    title: 'Alle Daten',
   }))
 });
 
