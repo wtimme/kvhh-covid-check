@@ -3,6 +3,7 @@ const express = require("express")
 const csv = require('csv-parser')
 const fs = require('fs')
 const path = require('path');
+const moment = require('moment')
 
 // CONFIGURATION
 const port = 1025
@@ -22,7 +23,8 @@ app.use('/js', express.static('node_modules/jquery/dist'))
 
 app.get('/', function (req, res) {
   var templateVariables = {
-    'lastUpdated': lastUpdatedDate
+    'lastUpdated': lastUpdatedDate,
+    lastModified: relativeModifiedDate,
   }
 
   res.render('index', templateVariables)
@@ -42,6 +44,7 @@ app.get('/suche', function (req, res) {
 
   res.render('search-results', {
     'lastUpdated': lastUpdatedDate,
+    lastModified: relativeModifiedDate,
     code: code,
     rows: rows,
   })
@@ -57,6 +60,7 @@ app.get('/alle-daten', function (req, res) {
   res.render('all-data', {
     rows: csvRows,
     lastUpdated: lastUpdatedDate,
+    lastModified: relativeModifiedDate,
     activeModule: 'all-data',
   })
 });
@@ -64,6 +68,7 @@ app.get('/alle-daten', function (req, res) {
 // Current CSV data
 var csvRows = [];
 var lastUpdatedDate;
+var relativeModifiedDate;
 
 var reloadCSVData = function() {
   const parsedRows = []
@@ -79,6 +84,7 @@ var reloadCSVData = function() {
 
       // Check when the CSV file was last modified, since this is the date at which the Cronjob last run.
       var stats = fs.statSync(csvFilename)
+      relativeModifiedDate = moment(stats.mtime).locale('de').fromNow()
       console.log('Data was last updated at', stats.mtime)
 
       console.log('CSV data reloaded successfully')
