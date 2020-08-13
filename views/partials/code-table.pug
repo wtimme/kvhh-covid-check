@@ -6,7 +6,11 @@ table.table
       th(scope="col") Auftragsdatum
   tbody
     each row in rows
-      tr
+
+      //- Give the row a red background in case the PDF also marked the result with red.
+      - var rowClass = ['positiv', 'kontrollbedürftig'].includes(row.Result.toLowerCase()) ? 'table-danger' : ''
+
+      tr(class=rowClass)
         th(scope="row") #{row.Code}
         td #{row.Result}
         td #{row.Date}
