@@ -55,6 +55,13 @@ app.get('/reload', function (req, res) {
   })
 });
 
+app.get('/alle-daten', function (req, res) {
+  res.render('all-data', {
+    rows: csvRows,
+    lastUpdated: lastUpdatedDate,
+  })
+});
+
 // Current CSV data
 var csvRows = [];
 var lastUpdatedDate;
