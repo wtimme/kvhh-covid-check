@@ -28,7 +28,7 @@ var getTemplateVariables = function (variables = {}) {
     lastModified: relativeModifiedDate,
   }
 
-  return Object.assign({},commonVariables, variables)
+  return Object.assign({}, variables, commonVariables)
 }
 
 app.get('/', function (req, res) {
