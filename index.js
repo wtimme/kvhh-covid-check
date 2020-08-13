@@ -6,7 +6,7 @@ const path = require('path');
 
 // CONFIGURATION
 const port = 1025
-const csvFilename = 'all.csv'
+const csvFilename = path.resolve(__dirname, 'all.csv')
 const lastUpdatedFile = path.resolve(__dirname, 'last-updated.txt')
 
 // Set up Express
