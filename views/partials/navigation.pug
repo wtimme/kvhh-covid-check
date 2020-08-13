@@ -1,3 +1,10 @@
 nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.mb-3
   div.container
     a.navbar-brand(href="/") Corona Abstrichtest
+
+    button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Navigation ein-/ausblenden")
+      span.navbar-toggler-icon
+
+    div.collapse.navbar-collapse(id="navigation")
+      div.navbar-nav.mr-auto
+        a.nav-item.nav-link(href="/alle-daten") Alle Daten
