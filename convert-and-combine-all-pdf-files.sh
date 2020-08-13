@@ -77,6 +77,9 @@ function convert_pdf_file_to_csv() {
   # Remove the first line, since it is the header of the table.
   tail -n +2 "$csv_filename" > "$csv_filename.tmp" && mv "$csv_filename.tmp" "$csv_filename"
 
+  # Add the PDF filename to each line.
+  ex +"%s/$/,$filename_with_extension/g" -cwq $csv_filename
+
   # Clean up by removing the single pages.
   echo "Cleaning up..."
   rm -rf $TEMPORARY_PAGE_DIRECTORY
@@ -100,7 +103,7 @@ function convert_and_combine_all_files() {
   cat $CSV_DIRECTORY/* >> $OUTPUT_FILE
 
   echo "Adding column title..."
-  echo "Code,Result,Date"|cat - $OUTPUT_FILE > /tmp/out && mv /tmp/out $OUTPUT_FILE
+  echo "Code,Result,Date,Filename"|cat - $OUTPUT_FILE > /tmp/out && mv /tmp/out $OUTPUT_FILE
 
   echo "Asking the web server to reload the CSV data..."
   curl -s -o /dev/null -v http://localhost:1025/reload > /dev/null 2>&1 &
