@@ -1,6 +1,7 @@
 node_modules
 pdf/
 csv/
+pages/
 *.jar
 all.csv
 last-updated.txt
