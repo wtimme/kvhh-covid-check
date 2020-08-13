@@ -14,13 +14,14 @@ html(lang="de")
           h4.alert-heading Keine Treffer
           p Die Suche nach #[code #{code}] ergab keine Treffer.
 
-          div.text-center
-            a.btn.btn-secondary(href="/") Weiteren Code abfragen
       else
 
         p Deine Suche nach #[code #{code}] ergab #{rows.length} Treffer.
         
         include partials/code-table.pug
+      
+      div.text-center
+        a.btn.btn-secondary(href="/") Weiteren Code abfragen
     
       include partials/footer.pug
 
