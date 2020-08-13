@@ -7,6 +7,8 @@ html(lang="de")
     include partials/navigation.pug
 
     div.container
+      h1.mb-3 Suchergebnisse
+
       if !rows.length
         div.alert.alert-info.clearfix(role="alert")
           h4.alert-heading Keine Treffer
@@ -15,7 +17,6 @@ html(lang="de")
           div.text-center
             a.btn.btn-secondary(href="/") Weiteren Code abfragen
       else
-        h1.mb-3 Suchergebnisse
 
         p Deine Suche nach #[code #{code}] ergab #{rows.length} Treffer.
         
