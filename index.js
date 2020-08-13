@@ -48,8 +48,9 @@ app.get('/reload', function (req, res) {
 
 // Current CSV data
 var csvRows = [];
+var lastUpdatedDate;
 
-var reloadCSVData = function(cb) {
+var reloadCSVData = function() {
   const parsedRows = []
 
   fs.createReadStream(csvFilename)
@@ -59,8 +60,6 @@ var reloadCSVData = function(cb) {
       csvRows = parsedRows
 
       console.log('CSV data reloaded successfully')
-
-      if (cb) { cb() }
     });
 };
 
