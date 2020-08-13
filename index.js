@@ -2,10 +2,12 @@
 const express = require("express")
 const csv = require('csv-parser')
 const fs = require('fs')
+const path = require('path');
 
 // CONFIGURATION
 const port = 1025
 const csvFilename = 'all.csv'
+const lastUpdatedFile = path.resolve(__dirname, 'last-updated.txt')
 
 // Set up Express
 const app = express()
@@ -20,6 +22,7 @@ app.use('/js', express.static('node_modules/jquery/dist'))
 
 app.get('/', function (req, res) {
   var templateVariables = {
+    'lastUpdated': lastUpdatedDate
   }
 
   var rowWithCode;
@@ -64,6 +67,9 @@ var reloadCSVData = function() {
     .on('data', (data) => parsedRows.push(data))
     .on('end', () => {
       csvRows = parsedRows
+
+      // Read the 'last updated' date
+      lastUpdatedDate = fs.readFileSync(lastUpdatedFile, { encoding: 'utf8', flag: 'r' }); 
 
       console.log('CSV data reloaded successfully')
     });
