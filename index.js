@@ -69,6 +69,13 @@ app.get('/alle-daten', function (req, res) {
   }))
 });
 
+app.get('/hintergrund', function (req, res) {
+  res.render('about', getTemplateVariables({
+    activeModule: 'about',
+    title: 'Hintergrund',
+  }))
+});
+
 // Current CSV data
 var csvRows = [];
 var lastUpdatedDate;
