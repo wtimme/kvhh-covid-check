@@ -13,7 +13,8 @@ table.table
       tr(class=rowClass)
         th(scope="row") #{row.Code}
         td #{row.Result}
-        td #{row.Date}
+        td 
+          a(href="https://www.kvhh.net/media/public/db/media/1/2020/04/833/"+row.Filename) #{row.Date}
 
 h3 Was bedeuten die Befunde?
 p.
