@@ -26,6 +26,8 @@ html(lang="de")
       
       div.text-center
         div.btn-group(role="group" aria-label="Aktionen")
+          if !rows.length
+            a.btn.btn-primary(href="/suche?code="+code) Erneut suchen
           a.btn.btn-secondary(href="/") Weiteren Code abfragen
     
       include partials/footer.pug

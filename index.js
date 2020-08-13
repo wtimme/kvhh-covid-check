@@ -42,6 +42,7 @@ app.get('/suche', function (req, res) {
 
   res.render('search-results', {
     'lastUpdated': lastUpdatedDate,
+    code: code,
     rows: rows,
   })
 })
