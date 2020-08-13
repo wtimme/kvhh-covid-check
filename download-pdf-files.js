@@ -6,7 +6,7 @@ const path = require("path");
 
 const base_url = 'https://www.kvhh.net'
 const url = base_url + '/kvhh/pages/index/p/1424'
-const pdf_directory = 'pdf'
+const pdf_directory = path.resolve(__dirname, 'pdf')
 
 // Make sure the target directory exists.
 if (!fs.existsSync(pdf_directory)){
