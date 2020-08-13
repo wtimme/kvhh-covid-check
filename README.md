@@ -1,6 +1,6 @@
 # SARS-CoV-2 test results for Hamburg
 
-Web app that allows for an easy retrieval of SARS-CoV-2 test results from the _Arztruf Hamburg_.
+Web app that allows for an easy retrieval of [SARS-CoV-2 test results][6] from the _Arztruf Hamburg_.
 
 ![Screenshot of the app in Firefox](screenshot.png)
 
@@ -48,3 +48,4 @@ This downloads the PDF files every hour and generates the CSV file five minutes 
 [3]: https://manual.uberspace.de/web-domains.html
 [4]: https://manual.uberspace.de/web-backends.html
 [5]: https://manual.uberspace.de/daemons-cron.html
+[6]: https://www.kvhh.net/kvhh/pages/index/p/1424
