@@ -25,19 +25,25 @@ app.get('/', function (req, res) {
     'lastUpdated': lastUpdatedDate
   }
 
-  if (req.query.code && req.query.code.length > 0) {
-    const code = req.query.code.trim()
+  res.render('index', templateVariables)
+})
 
-    templateVariables.code = code
+app.get('/suche', function (req, res) {
+  const code = req.query.code.trim()
 
-    templateVariables.rows = csvRows.filter(function(row) {
-      return row['Code'].toLowerCase().includes(code.toLowerCase())
-    })
-
-    res.render('search-results', templateVariables)
-  } else {
-    res.render('index', templateVariables)
+  if (code.length == 0) {
+    res.redirect('/')
+    return
   }
+
+  const rows = csvRows.filter(function(row) {
+    return row['Code'].toLowerCase().includes(code.toLowerCase())
+  })
+
+  res.render('search-results', {
+    'lastUpdated': lastUpdatedDate,
+    rows: rows,
+  })
 })
 
 app.get('/reload', function (req, res) {
