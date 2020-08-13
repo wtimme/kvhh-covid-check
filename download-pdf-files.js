@@ -9,9 +9,7 @@ const url = base_url + '/kvhh/pages/index/p/1424'
 const pdf_directory = path.resolve(__dirname, 'pdf')
 
 // Make sure the target directory exists.
-if (!fs.existsSync(pdf_directory)){
-  fs.mkdirSync(pdf_directory);
-}
+fs.mkdirSync(pdf_directory, { recursive: true });
 
 rp(url)
 .then(function(html){
