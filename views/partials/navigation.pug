@@ -7,4 +7,5 @@ nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.mb-3
 
     div.collapse.navbar-collapse(id="navigation")
       div.navbar-nav.mr-auto
-        a.nav-item.nav-link(href="/alle-daten") Alle Daten
+        - var item = { url: '/alle-daten', title: 'Alle Daten', module: 'all-data' }
+        include nav-item.pug

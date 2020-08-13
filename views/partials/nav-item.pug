@@ -1,0 +1,6 @@
+//- Single item in the navigation bar
+if activeModule == item.module
+  a.nav-item.nav-link.active(href=item.url) #{item.title}
+    span(class="sr-only") (ausgewählt)
+else
+  a.nav-item.nav-link(href=item.url) #{item.title}

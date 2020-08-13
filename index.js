@@ -57,6 +57,7 @@ app.get('/alle-daten', function (req, res) {
   res.render('all-data', {
     rows: csvRows,
     lastUpdated: lastUpdatedDate,
+    activeModule: 'all-data',
   })
 });
 
