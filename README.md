@@ -4,6 +4,15 @@ Web app that allows for an easy retrieval of [SARS-CoV-2 test results][6] from t
 
 ![Screenshot of the app in Firefox](screenshot.png)
 
+## How it works
+
+The app consists of three parts:
+
+- A Node.js script (`download-pdf-files.js`) that scrapes the [website][6] and downloads all PDF files
+- A Bash script (`convert-and-combine-all-pdf-files.sh`) that uses [tabula-java][7] to extract the tables from the PDF files.
+  It then combines the data into one single CSV file
+- The web app that consumes the combined CSV file and allows users to search it
+
 ## Setup
 
 1. Download the [latest release][1] (the `.jar` file) of **tabula-java**
@@ -49,3 +58,4 @@ This downloads the PDF files every hour and generates the CSV file five minutes 
 [4]: https://manual.uberspace.de/web-backends.html
 [5]: https://manual.uberspace.de/daemons-cron.html
 [6]: https://www.kvhh.net/kvhh/pages/index/p/1424
+[7]: https://github.com/tabulapdf/tabula-java
