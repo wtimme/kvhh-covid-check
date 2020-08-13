@@ -7,6 +7,7 @@ PDF_DIRECTORY="./pdf"
 CSV_DIRECTORY="./csv"
 OUTPUT_FILE="all.csv"
 
+# Converts and combines all PDF files into one single CSV file
 function convert_and_combine_all_files() {
   # Remove the old output files.
   rm -f $OUTPUT_FILE
