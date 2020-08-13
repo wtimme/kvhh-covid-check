@@ -77,6 +77,10 @@ var reloadCSVData = function() {
       // Read the 'last updated' date
       lastUpdatedDate = fs.readFileSync(lastUpdatedFile, { encoding: 'utf8', flag: 'r' }); 
 
+      // Check when the CSV file was last modified, since this is the date at which the Cronjob last run.
+      var stats = fs.statSync(csvFilename)
+      console.log('Data was last updated at', stats.mtime)
+
       console.log('CSV data reloaded successfully')
     });
 };
