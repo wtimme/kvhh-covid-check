@@ -3,14 +3,12 @@
 # A bash script that converts all PDF documents into one single large CSV.
 
 # CONFIGURATION
+TABULA_JAR="tabula.jar"
+MAXIMUM_NUMBER_OF_PAGES=25
 PDF_DIRECTORY="./pdf"
 CSV_DIRECTORY="csv"
-OUTPUT_FILE="all.csv"
-
-# CONFIGURATION
-TABULA_JAR="tabula.jar"
 TEMPORARY_PAGE_DIRECTORY="pages"
-MAXIMUM_NUMBER_OF_PAGES=25
+OUTPUT_FILE="all.csv"
 
 # Converts the SARS-CoV-2 result PDF into CSV
 function convert_pdf_file_to_csv() {
