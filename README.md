@@ -2,7 +2,7 @@
 
 Web app that allows for an easy retrieval of [SARS-CoV-2 test results][6] from the _Arztruf Hamburg_.
 
-![Screenshot of the app in Firefox](screenshot-homepage.png)
+![Screenshot of the homepage](screenshot-homepage.png)
 
 ## How it works
 
