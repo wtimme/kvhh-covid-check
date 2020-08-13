@@ -2,13 +2,16 @@
 
 # A bash script that converts all PDF documents into one single large CSV.
 
+# Use an absolute path for directories so that the script can be invoked from anywhere.
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
 # CONFIGURATION
-TABULA_JAR="tabula.jar"
+TABULA_JAR="$parent_path/tabula.jar"
 MAXIMUM_NUMBER_OF_PAGES=25
-PDF_DIRECTORY="pdf"
-CSV_DIRECTORY="csv"
-TEMPORARY_PAGE_DIRECTORY="pages"
-OUTPUT_FILE="all.csv"
+PDF_DIRECTORY="$parent_path/pdf"
+CSV_DIRECTORY="$parent_path/csv"
+TEMPORARY_PAGE_DIRECTORY="$parent_path/pages"
+OUTPUT_FILE="$parent_path/all.csv"
 
 # Converts the SARS-CoV-2 result PDF into CSV
 function convert_pdf_file_to_csv() {
