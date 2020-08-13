@@ -103,7 +103,7 @@ function convert_and_combine_all_files() {
   echo "Code,Result,Date"|cat - $OUTPUT_FILE > /tmp/out && mv /tmp/out $OUTPUT_FILE
 
   echo "Asking the web server to reload the CSV data..."
-  curl -s -o /dev/null -v http://localhost:1025/reload
+  curl -s -o /dev/null -v http://localhost:1025/reload > /dev/null 2>&1 &
 
   echo "Done."
 }
