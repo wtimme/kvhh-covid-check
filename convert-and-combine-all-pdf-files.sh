@@ -89,8 +89,7 @@ function convert_pdf_file_to_csv() {
 
 # Converts and combines all PDF files into one single CSV file
 function convert_and_combine_all_files() {
-  # Remove the old output files.
-  rm -f $OUTPUT_FILE
+  # Remove the old CSV files.
   rm -rf "$CSV_DIRECTORY"
 
   # Process all files
@@ -98,6 +97,9 @@ function convert_and_combine_all_files() {
   do
     convert_pdf_file_to_csv "$filename"
   done
+
+  # Make sure any old data is removed.
+  rm -f $OUTPUT_FILE
 
   echo "Combining all CSV files into one..."
   cat $CSV_DIRECTORY/* >> $OUTPUT_FILE
