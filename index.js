@@ -39,7 +39,9 @@ app.get('/', function (req, res) {
 })
 
 app.get('/suche', function (req, res) {
-  const code = req.query.code.trim()
+  const regularExpression = /([^\/]+)/i
+  const match = regularExpression.exec(req.query.code)
+  const code = match ? match[1] : ""
 
   if (code.length == 0) {
     res.redirect('/')
