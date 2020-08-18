@@ -26,7 +26,7 @@ app.use('/js', express.static('node_modules/jquery/dist'))
 var getTemplateVariables = function (variables = {}) {
   const commonVariables = {
     'lastUpdated': lastUpdatedDate,
-    lastModified: relativeModifiedDate,
+    lastModified: moment(absoluteModifiedDate).locale('de').fromNow(),
     title: variables.title ? pageTitle + ': ' + variables.title : pageTitle,
   }
 
@@ -79,7 +79,7 @@ app.get('/hintergrund', function (req, res) {
 // Current CSV data
 var csvRows = [];
 var lastUpdatedDate;
-var relativeModifiedDate;
+var absoluteModifiedDate;
 
 var reloadCSVData = function() {
   const parsedRows = []
@@ -95,8 +95,8 @@ var reloadCSVData = function() {
 
       // Check when the CSV file was last modified, since this is the date at which the Cronjob last run.
       var stats = fs.statSync(csvFilename)
-      relativeModifiedDate = moment(stats.mtime).locale('de').fromNow()
-      console.log('Data was last updated at', stats.mtime)
+      absoluteModifiedDate = stats.mtime
+      console.log('Data was last updated at', absoluteModifiedDate)
 
       console.log('CSV data reloaded successfully')
     });
