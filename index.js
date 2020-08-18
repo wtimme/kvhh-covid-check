@@ -26,6 +26,7 @@ app.use('/js', express.static('node_modules/jquery/dist'))
 var getTemplateVariables = function (variables = {}) {
   const commonVariables = {
     'lastUpdated': lastUpdatedDate,
+    lastModifiedAbsolute: absoluteModifiedDate,
     lastModifiedRelative: moment(absoluteModifiedDate).locale('de').fromNow(),
     title: variables.title ? pageTitle + ': ' + variables.title : pageTitle,
   }
