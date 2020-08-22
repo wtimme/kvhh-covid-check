@@ -43,6 +43,31 @@ getTestingSiteURLs = function() {
   })
 }
 
+// Fetches the URLs to all PDF downloads for a particular testing site.
+// The `testingSiteURL` page contains a list of PDF download links.
+getPDFURLsFromTestingSiteURL = function(testingSiteURL) {
+  return new Promise(function(resolve, reject) {
+    needle(testingSiteURL, function(error, response) {
+      if (error) {
+        console.error(`Failed to retrieve PDFs from ${testingSiteURL}`)
+
+        return reject(error)
+      }
+
+      const downloadLinks = $('.cc-m-download-file-link .cc-m-download-link', response.body)
+      const pdfURLs = new Set()
+      downloadLinks.each(function(i, element) {
+        const relativeURL = element.attribs.href
+        const absoluteURL = `${base_url}${relativeURL}`
+
+        pdfURLs.add(absoluteURL)
+      })
+
+      resolve(Array.from(pdfURLs))
+    })
+  })
+}
+
 rp(url)
 .then(function(html){
   const pdf_urls = new Set()
