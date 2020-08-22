@@ -5,8 +5,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require("path");
 
-const base_url = 'https://www.kvhh.net'
-const url = base_url + '/kvhh/pages/index/p/1424'
+const base_url = 'https://www.laborergebnisse-hamburg.de'
 const pdf_directory = path.resolve(__dirname, 'pdf')
 const last_updated_file = path.resolve(__dirname, 'last-updated.txt')
 
@@ -17,9 +16,8 @@ fs.mkdirSync(pdf_directory, { recursive: true });
 // Gets the URLs for all the testing sites in Hamburg.
 // The lists with the PDFs are available under these URLs.
 getTestingSiteURLs = function() {
-  const baseURL = 'https://www.laborergebnisse-hamburg.de'
   return new Promise(function(resolve, reject) {
-    needle(baseURL, function(error, response) {
+    needle(base_url, function(error, response) {
       if (error) {
         console.error('Failed to retrieve testing sites.')
 
@@ -36,7 +34,7 @@ getTestingSiteURLs = function() {
           return
         }
 
-        const absoluteURL = `${baseURL}${relativeURL}`
+        const absoluteURL = `${base_url}${relativeURL}`
         testingSiteURLs.add(absoluteURL)
       })
 
