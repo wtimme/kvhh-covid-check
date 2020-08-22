@@ -1,4 +1,5 @@
 const rp = require('request-promise')
+const needle = require('needle')
 const $ = require('cheerio')
 const https = require('https');
 const fs = require('fs');
@@ -12,6 +13,37 @@ const last_updated_file = path.resolve(__dirname, 'last-updated.txt')
 // Make sure the target directory is clean and exists.
 fs.rmdirSync(pdf_directory, { recursive: true });
 fs.mkdirSync(pdf_directory, { recursive: true });
+
+// Gets the URLs for all the testing sites in Hamburg.
+// The lists with the PDFs are available under these URLs.
+getTestingSiteURLs = function() {
+  const baseURL = 'https://www.laborergebnisse-hamburg.de'
+  return new Promise(function(resolve, reject) {
+    needle(baseURL, function(error, response) {
+      if (error) {
+        console.error('Failed to retrieve testing sites.')
+
+        return reject(error)
+      }
+
+      const navigationLinks = $('[data-container="navigation"] li a', response.body)
+      const testingSiteURLs = new Set()
+      navigationLinks.each(function(i, element) {
+        const relativeURL = element.attribs.href
+        
+        if (relativeURL == '/') {
+          // We are not interested in links to the homepage.
+          return
+        }
+
+        const absoluteURL = `${baseURL}${relativeURL}`
+        testingSiteURLs.add(absoluteURL)
+      })
+
+      resolve(Array.from(testingSiteURLs))
+    })
+  })
+}
 
 rp(url)
 .then(function(html){
