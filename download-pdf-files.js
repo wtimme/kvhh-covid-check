@@ -68,6 +68,30 @@ getPDFURLsFromTestingSiteURL = function(testingSiteURL) {
   })
 }
 
+// Gets the PDF URLs for *all* testing sites.
+getAllPDFURLs = function() {
+  return new Promise(function(resolve, reject) {
+    getTestingSiteURLs()
+      .then((testingSiteURLs) => {
+        const promises = testingSiteURLs.map((url) => {
+          return getPDFURLsFromTestingSiteURL(url)
+        })
+        
+        Promise.all(promises)
+          .then((results) => {
+            var allURLs = []
+
+            for (i = 0; i < results.length; i++) {
+              allURLs = allURLs.concat(results[i])
+            }
+
+            resolve(allURLs)
+          })
+      })
+      .catch(reject)
+  })
+}
+
 rp(url)
 .then(function(html){
   const pdf_urls = new Set()
