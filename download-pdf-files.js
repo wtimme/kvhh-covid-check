@@ -92,6 +92,44 @@ getAllPDFURLs = function() {
   })
 }
 
+// Downloads the PDF from the given URL.
+// Follows a redirect, if there was one.
+downloadPDF = function(url) {
+  return new Promise(function(resolve, reject) {
+    var filenameEncoded = path.basename(url).split('?')[0]
+    var filename = decodeURIComponent(filenameEncoded)
+    var destination_path = `${pdf_directory}/${filename}`
+  
+    var file = fs.createWriteStream(destination_path);
+    const requestOptions = {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:79.0) Gecko/20100101 Firefox/79.0'
+      }
+    }
+    var request = https.get(url, requestOptions, function(res) {
+      if (res.statusCode === 302) {
+        // This is a redirect; follow it.
+        const redirectURL = res.headers.location
+        downloadPDF(redirectURL).then(resolve).catch(reject)
+        return
+      }
+      
+      res.pipe(file);
+
+      file.on('finish', function() {
+        file.close(resolve);  // close() is async, call cb after close completes.
+      });
+    }).on('error', function(err) {
+      console.error('Download failed.')
+
+      // Delete the file async.
+      fs.unlink(destination_path);
+
+      reject(err)
+    });
+  })
+}
+
 rp(url)
 .then(function(html){
   const pdf_urls = new Set()
