@@ -96,8 +96,7 @@ getAllPDFURLs = function() {
 // Follows a redirect, if there was one.
 downloadPDF = function(url) {
   return new Promise(function(resolve, reject) {
-    var filenameEncoded = path.basename(url).split('?')[0]
-    var filename = decodeURIComponent(filenameEncoded)
+    var filename = path.basename(url).split('?')
     var destination_path = `${pdf_directory}/${filename}`
   
     var file = fs.createWriteStream(destination_path);
