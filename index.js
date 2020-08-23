@@ -35,7 +35,7 @@ var getTemplateVariables = function (variables = {}) {
 }
 
 app.get('/', function (req, res) {
-  res.render('search-form', getTemplateVariables())
+  res.render('unable-to-parse', getTemplateVariables())
 })
 
 app.get('/suche', function (req, res) {

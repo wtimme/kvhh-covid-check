@@ -1,0 +1,31 @@
+doctype html
+
+html(lang="de")
+  include partials/head.pug
+  
+  body
+    include partials/navigation.pug
+
+    div.container
+      div.jumbotron
+        h1 Sorry, aber dieser Dienst ist gerade nicht verfügbar.
+
+        p.lead.
+          Bis vor kurzem war es hier möglich die Corona-Testergebnisse der Kassenärztlichen Vereinigung Hamburg (KVHH)
+          komfortable über ein Suchformular abzurufen. Leider sind die PDF-Dateien, in denen die Ergebnisse veröffentlicht
+          werden, alles andere als einheitlich. Das erhöht den Aufwand, die Dateien automatisiert auszuwerten, enorm.
+        
+        p.lead Besuche die Seite der KVHH direkt, um die PDFs manuell herunterzuladen und Dein Testergebnis zu erfahren.
+
+        p.text-center
+          a.btn.btn-primary(href="https://www.laborergebnisse-hamburg.de/") Zur offiziellen Seite der KVHH
+        
+        p.text-muted.
+          Für die Nerds: Falls ihr Interesse habt Euch des Parsings anzunehmen schaut gerne auf
+          #[a(href="https://github.com/wtimme/kvhh-covid-check") GitHub] vorbei. Pull Requests sind immer gerne gesehen.
+    
+      include partials/footer.pug
+
+    script(src='/js/jquery.min.js')
+    script(src='/js/popper.min.js')
+    script(src='/js/bootstrap.min.js')
