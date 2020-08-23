@@ -5,6 +5,19 @@ Web app that allows for an easy retrieval of [SARS-CoV-2 test results][6] from t
 ![Screenshot of the homepage](screenshot-homepage.png)
 ![Screenshot of the search results](screenshot-search-results.png)
 
+## Important: PDF parsing is broken!
+
+The KVHH has recently launched a new website, and with that, it has become apparent that the format of the PDF files
+is not consistent. I've looked into extending the parsing, but the format is just _so_ different from file to file.
+
+Even for files from the same testing site (e. g. the lab in Hamburg-Altona), the structure differs depending on the date
+at which the results were uploaded.
+
+**Pull requests that fix the PDF parsing are more than welcome.** But be aware that there's some heavy lifting involved,
+given that even _tabula-java_ has its difficulties making sense of the data.
+
+Unfortunately, even with the new website, it is still not possible for test subjects to easily lookup their result.
+
 ## How it works
 
 The app consists of three parts:
