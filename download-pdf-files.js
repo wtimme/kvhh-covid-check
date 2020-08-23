@@ -108,9 +108,14 @@ downloadPDF = function(url) {
     }
     var request = https.get(url, requestOptions, function(res) {
       if (res.statusCode === 302) {
-        // This is a redirect; follow it.
-        const redirectURL = res.headers.location
-        downloadPDF(redirectURL).then(resolve).catch(reject)
+        // This is a redirect.
+        file.close(() => {
+          // Close and remove the file.
+          fs.unlink(destination_path, function() {
+            const redirectURL = res.headers.location
+            downloadPDF(redirectURL).then(resolve).catch(reject)
+          })
+        })
         return
       }
       
